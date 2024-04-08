@@ -1,0 +1,111 @@
+/*
+    PALETTE (DONT DELETE)
+    red: E63946;
+    white: F1FAEE;
+    light blue: A8DADC;
+    ocean blue: 457B9D;
+    navy blue: 1D3557;
+*/
+
+body
+{
+    background-color: white;
+}
+
+#title
+{
+    background-color: #F1FAEE;
+    border: 2px solid black;
+    height: auto;
+    width: auto;
+    margin: 0 auto;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 50px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.edit-input
+{
+    background-color: #A8DADC;
+    border: 2px solid black;
+    height: 100px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.appointment-list
+{
+    background-color: #A8DADC;
+    border: 2px solid black;
+    height: 100px;
+    margin-top: 10px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.appointment-list:hover
+{
+    background-color: #1D3557;
+    border: 2px solid black;
+    height: 100px;
+    margin-top: 10px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#appointment-data
+{
+    background-color: #A8DADC;
+    border: 2px solid black;
+    height: 100px;
+    margin-top: 10px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#search-appointment
+{
+    width: 200px; 
+    height: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1, h2, p{
+    color: #E63946;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button
+{
+    width: auto;
+    height: 30px;
+    background-color: #1D3557;
+    color: white;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button:hover 
+{
+    width: auto;
+    height: 30px;
+    background-color: #457B9D;
+    color: white;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+}
