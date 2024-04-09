@@ -5,11 +5,11 @@ const app = express();
 
 const pool = mysql.createPool({
   connectionLimit: 10,
-  host: '10.2.0.39', // Replace with your MySQL host address
-  port: "20039",
-  user: "stadvdb", // Replace with your MySQL username
-  password: "|STadvdb|13", // Replace with your MySQL password
-  database: "appointments", // Replace with your database name
+  host: "mco2.cpsqomyoe0wj.ap-southeast-2.rds.amazonaws.com", // Replace with your MySQL host address
+  port: "3306",
+  user: "admin", // Replace with your MySQL username
+  password: "STADVDB13", // Replace with your MySQL password
+  database: "mco1", // Replace with your database name
 });
 
 pool
