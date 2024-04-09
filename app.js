@@ -4,9 +4,9 @@ const mysql = require("mysql2/promise");
 const app = express();
 
 const pool = mysql.createPool({
-  connectionLimit: 10,
+  connectionLimit: 60000,
   host: '10.2.0.39', // Replace with your MySQL host address
-  port: "20039",
+  port: 80,
   user: "stadvdb", // Replace with your MySQL username
   password: "|STadvdb|13", // Replace with your MySQL password
   database: "appointments", // Replace with your database name

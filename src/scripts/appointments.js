@@ -13,11 +13,6 @@ $(document).ready(function(){
     {
         window.location.href = "index.html";
     });
-    
-    $('#cancel').click(function(e)
-    {
-        window.location.href = "appointment.html";
-    });
 
     $('#create-appointment').click(function(e)
     {

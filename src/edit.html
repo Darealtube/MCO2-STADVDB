@@ -12,14 +12,25 @@
   </head>
 
   <body> 
-    <div id = "title"> APPOINTMENTS </div>
-    <h2> Id: 9017203702140 </h2>
-
-    <div class = "edit-input"> 
-      Textfields/Inpus for each modifiable field
-    </div>
-
-    <button type = "submit" id = "back-appointment-data"> Edit </button>
-    <button id = "cancel"> Cancel </button>
+    <form action = "/edit_appointment" method = "POST">
+      <body> 
+        <div id = "title"> APPOINTMENTS </div>
+        <h2> Id: 9017203702140 </h2>
+    
+        <div class = "edit-input"> 
+          Textfields/Inpus for each modifiable field
+        </div>
+    
+        <button type = "submit"> Edit </button>
+        <button id = "cancel"> Cancel </button>
+      </body>
+    </form>
+    <script> 
+      document.getElementById('cancel').addEventListener('click', function(e){
+        e.preventDefault(); 
+  
+        window.location.href = "appointment.html";
+      });
+    </script> 
   </body>
 </html>
