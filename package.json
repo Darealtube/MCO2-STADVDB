@@ -4,6 +4,7 @@
   "description": "MCO2 of STADVDB",
   "main": "index.js",
   "scripts": {
+    "dev": "node app.js",
     "test": "npm run dev"
   },
   "keywords": [
@@ -14,7 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.19.2",
-    "mssql": "^10.0.2",
+    "mysql2": "^3.9.4",
     "node": "^18.20.0"
   }
 }

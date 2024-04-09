@@ -1,40 +1,33 @@
 // server.js
 const express = require("express");
-const sql = require("mssql");
+const mysql = require("mysql2/promise");
 const app = express();
+
+const pool = mysql.createPool({
+  connectionLimit: 10,
+  host: '10.2.0.39', // Replace with your MySQL host address
+  port: "20039",
+  user: "stadvdb", // Replace with your MySQL username
+  password: "|STadvdb|13", // Replace with your MySQL password
+  database: "appointments", // Replace with your database name
+});
+
+pool
+  .query("SELECT * FROM appointments")
+  .then((results) => {
+    console.log("Connection successful and query executed!");
+  })
+  .catch((err) => {
+    console.error("Error connecting or executing query:", err);
+  });
 
 app.use(express.json());
 app.use(express.static("src"));
-app.use(cookieParser()); // Use cookieParses so we'll be able to get the cookie value from req
-
-// Configure SQL Server connection
-const config = {
-  user: "your_username",
-  password: "your_password",
-  server: "your_server",
-  database: "your_database",
-};
-
-// Connect to SQL Server
-sql
-  .connect(config)
-  .then((pool) => {
-    console.log("Connected to SQL Server");
-  })
-  .catch((err) => {
-    console.error("SQL Connection Error", err);
-  });
 
 // Import the routes found in the /api folder
 const appointmentRoutes = require("./src/api/appointmentRoutes.js");
-const clinicRoutes = require("./src/api/clinicRoutes.js");
-const doctorRoutes = require("./src/api/doctorRoutes.js");
-const pxRoutes = require("./src/api/pxRoutes.js");
 
 app.use(appointmentRoutes);
-app.use(clinicRoutes);
-app.use(doctorRoutes);
-app.use(pxRoutes);
 
 // Start the server
 const port = process.env.PORT || 3000;
