@@ -11,15 +11,25 @@
     <script src="./scripts/appointments.js"></script>
   </head>
 
-  <body> 
-    <div id = "title"> APPOINTMENTS </div>
-    <h2> Id: 9017203702140 </h2>
+  <form action = "/create_appointment" method = "POST">
+    <body> 
+      <div id = "title"> APPOINTMENTS </div>
+      <h2> Id: 9017203702140 </h2>
+  
+      <div class = "edit-input"> 
+        Textfields/Inpus for each modifiable field
+      </div>
+  
+      <button type = "submit"> Submit </button>
+      <button id = "cancel"> Cancel </button>
+    </body>
+  </form>
 
-    <div class = "edit-input"> 
-      Textfields/Inpus for each modifiable field
-    </div>
+  <script> 
+    document.getElementById('cancel').addEventListener('click', function(e){
+      e.preventDefault(); 
 
-    <button id = "back-appointment-data"> Back to Appointment Data </button>
-    <button id = "cancel"> Cancel </button>
-  </body>
+      window.location.href = "appointment.html";
+    });
+  </script> 
 </html>
