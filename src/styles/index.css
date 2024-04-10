@@ -7,105 +7,102 @@
     navy blue: 1D3557;
 */
 
-body
-{
-    background-color: white;
+body {
+  background-color: white;
+  height: 100vh;
 }
 
-#title
-{
-    background-color: #F1FAEE;
-    border: 2px solid black;
-    height: auto;
-    width: auto;
-    margin: 0 auto;
-    color: black;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    font-size: 50px;
-    text-align: center;
-    border-radius: 5px;
+#title {
+  background-color: #f1faee;
+  border: 2px solid black;
+  height: auto;
+  width: auto;
+  margin: 0 auto;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 50px;
+  text-align: center;
+  border-radius: 5px;
 }
 
-.edit-input
-{
-    background-color: #A8DADC;
-    border: 2px solid black;
-    height: 100px;
-    color: black;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 5px;
-    border-radius: 5px;
-    margin-bottom: 10px;
+.edit-input {
+  background-color: #a8dadc;
+  border: 2px solid black;
+  height: auto;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
-.appointment-list
-{
-    background-color: #A8DADC;
-    border: 2px solid black;
-    height: 100px;
-    margin-top: 10px;
-    color: black;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 5px;
-    cursor: pointer;
-    border-radius: 5px;
+.container {
+  background-color: #a8dadc;
+  border: 2px solid black;
+  margin-top: 10px;
+  color: black !important;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 250ms ease-in-out;
 }
 
-.appointment-list:hover
-{
-    background-color: #1D3557;
-    border: 2px solid black;
-    height: 100px;
-    margin-top: 10px;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 5px;
-    cursor: pointer;
-    border-radius: 5px;
+.container:hover {
+  background-color: #1d3557;
+  color: white !important;
 }
 
-#appointment-data
-{
-    background-color: #A8DADC;
-    border: 2px solid black;
-    height: 100px;
-    margin-top: 10px;
-    color: black;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 5px;
-    border-radius: 5px;
-    margin-bottom: 10px;
+.appointment-list {
+  font-family: Arial, Helvetica, sans-serif;
+  height: auto;
+  overflow: auto;
 }
 
-#search-appointment
-{
-    width: 200px; 
-    height: 30px;
-    font-family: Arial, Helvetica, sans-serif;
+#appointment-data {
+  background-color: #a8dadc;
+  border: 2px solid black;
+  height: auto;
+  margin-top: 10px;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
-h1, h2, p{
-    color: #E63946;
-    font-family: Arial, Helvetica, sans-serif;
+#search-appointment {
+  width: 200px;
+  height: 30px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-button
-{
-    width: auto;
-    height: 30px;
-    background-color: #1D3557;
-    color: white;
-    cursor: pointer;
-    font-family: Arial, Helvetica, sans-serif;
+h1,
+h2 {
+  color: #e63946;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-button:hover 
-{
-    width: auto;
-    height: 30px;
-    background-color: #457B9D;
-    color: white;
-    cursor: pointer;
-    font-family: Arial, Helvetica, sans-serif;
+button {
+  width: auto;
+  height: 30px;
+  background-color: #1d3557;
+  color: white;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button:hover {
+  width: auto;
+  height: 30px;
+  background-color: #457b9d;
+  color: white;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+p {
+  margin: 0;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }

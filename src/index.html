@@ -8,26 +8,24 @@
     <link rel="icon" href="./public/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./styles/index.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./scripts/appointments.js"></script>
+    <script src="./scripts/index.js"></script>
   </head>
 
-  <body> 
-    <div id = "title"> APPOINTMENTS </div>
-    <p> Click here to create an appointment: </p> <button id = "create-appointment"> Create Appointment </button>
-    <h2> Appointments List: </h2>
-    <input id = "search-appointment" type = "text" placeholder = "Search Appointment (Type ID)"> 
-    <button> Search </button>
-
-    <div class = "appointment-list"> 
-      Id: 
-    </div>
-
-    <div class = "appointment-list"> 
-      Id: 
-    </div>
-
-    <div class = "appointment-list"> 
-      Id: 
-    </div>
+  <body>
+    <div id="title">APPOINTMENTS</div>
+    <p>Click here to create an appointment:</p>
+    <a href="/create.html"
+      ><button id="create-appointment">Create Appointment</button></a
+    >
+    <h2>Appointments List (20 most recent):</h2>
+    <p class="search-error"></p>
+    <input
+      id="search-appointment"
+      type="text"
+      placeholder="Search Appointment (Type ID)"
+    />
+    <button class="search-btn">Search</button>
+    <a href="/statistics.html"><button>Statistical Reports</button></a>
+    <div class="appointment-list"></div>
   </body>
 </html>

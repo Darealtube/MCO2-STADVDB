@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MCO2 STADVDB</title>
+    <link rel="icon" href="./public/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./styles/index.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./scripts/statistics.js"></script>
+  </head>
+
+  <body>
+    <a href="/"><button>Back to Home</button></a>
+
+    <div>STATISTICS</div>
+
+    <h1>
+      Total number of patients seen by all clinics/hospital per month/year
+    </h1>
+
+    <table class="report1">
+      <tr>
+        <th>YEAR</th>
+        <th>MONTH</th>
+        <th>COUNT</th>
+      </tr>
+
+      <tbody class="report1-rows"></tbody>
+    </table>
+
+    <h1>
+      Average Waiting Time for consultation appointments at clinics in NCR
+      during the past year
+    </h1>
+
+    <table class="report2">
+      <tr>
+        <th>Clinic</th>
+        <th>Average Wait Time</th>
+      </tr>
+
+      <tbody class="report2-rows"></tbody>
+    </table>
+
+    <h1>
+      Average patient wait times across different clinics by doctor's main
+      specialty
+    </h1>
+
+    <table class="report3">
+      <tr>
+        <th>Main Specialty</th>
+        <th>Type</th>
+        <th>Average Wait Time</th>
+      </tr>
+
+      <tbody class="report3-rows"></tbody>
+    </table>
+  </body>
+</html>

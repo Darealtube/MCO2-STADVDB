@@ -8,29 +8,64 @@
     <link rel="icon" href="./public/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./styles/index.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./scripts/appointments.js"></script>
+    <script src="./scripts/edit.js"></script>
   </head>
 
-  <body> 
-    <form action = "/edit_appointment" method = "POST">
-      <body> 
-        <div id = "title"> APPOINTMENTS </div>
-        <h2> Id: 9017203702140 </h2>
-    
-        <div class = "edit-input"> 
-          Textfields/Inpus for each modifiable field
-        </div>
-    
-        <button type = "submit"> Edit </button>
-        <button id = "cancel"> Cancel </button>
-      </body>
-    </form>
-    <script> 
-      document.getElementById('cancel').addEventListener('click', function(e){
-        e.preventDefault(); 
-  
-        window.location.href = "appointment.html";
-      });
-    </script> 
+  <body>
+    <div id="title">APPOINTMENTS</div>
+    <h2 class="appointment-id"></h2>
+
+    <div class="edit-input">
+      <label for="timeQueued">Time Queued</label>
+      <input type="datetime-local" id="timeQueued" name="timeQueued" />
+      <br />
+      <label for="queueDate">Queue Date</label>
+      <input type="datetime-local" id="queueDate" name="queueDate" />
+      <br />
+      <label for="startTime">Start Time</label>
+      <input type="datetime-local" id="startTime" name="startTime" />
+      <br />
+      <label for="endTime">End Time</label>
+      <input type="datetime-local" id="endTime" name="endTime" />
+      <br />
+      <p>isVirtual</p>
+
+      <input type="radio" id="Yes" name="isVirtual" value="Yes" />
+      <label for="Yes">Yes</label><br />
+
+      <input type="radio" id="No" name="isVirtual" value="No" />
+      <label for="No">No</label><br />
+
+      <p>Status:</p>
+
+      <input type="radio" id="Complete" name="status" value="Complete" />
+      <label for="Complete">Complete</label><br />
+
+      <input type="radio" id="Queued" name="status" value="Queued" />
+      <label for="Queued">Queued</label><br />
+
+      <input type="radio" id="Serving" name="status" value="Serving" />
+      <label for="Serving">Serving</label><br />
+
+      <input type="radio" id="Cancel" name="status" value="Cancel" />
+      <label for="Cancel">Cancel</label><br />
+
+      <input type="radio" id="Skip" name="status" value="Skip" />
+      <label for="Skip">Skip</label><br />
+
+      <input type="radio" id="NoShow" name="status" value="NoShow" />
+      <label for="NoShow">NoShow</label><br />
+
+      <p>Type:</p>
+
+      <input type="radio" id="Consultation" name="type" value="Consultation" />
+      <label for="Consultation">Consultation</label><br />
+
+      <input type="radio" id="Inpatient" name="type" value="Inpatient" />
+      <label for="Inpatient">Inpatient</label><br />
+    </div>
+
+    <button id="edit">Edit</button>
+    <button id="cancel">Cancel</button>
   </body>
 </html>
