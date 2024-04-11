@@ -3,48 +3,41 @@ const express = require("express");
 const mysql = require("mysql2/promise");
 const app = express();
 
+const changeLog = [];
+
 // Replace with your RDS configuration details
-const masterPool = mysql.createPool({
+const phPool = mysql.createPool({
   connectionLimit: 10,
-  host: "mco2.cpsqomyoe0wj.ap-southeast-2.rds.amazonaws.com", // Replace with your MySQL host address
-  port: "3306",
-  user: "admin", // Replace with your MySQL username
-  password: "STADVDB13", // Replace with your MySQL password
+  host: "ccscloud.dlsu.edu.ph", // Replace with your MySQL host address
+  port: "20039",
+  user: "root", // Replace with your MySQL username
+  password: "|STadvdb|13", // Replace with your MySQL password
   database: "mco1", // Replace with your database name
   queueLimit: 0,
   waitForConnections: true,
 });
 
-const slave1Pool = mysql.createPool({
+const luzonPool = mysql.createPool({
   connectionLimit: 10,
-  host: "mco2-2.cny08cmqwpyk.ap-southeast-1.rds.amazonaws.com", // Replace with your MySQL host address
-  port: "3306",
-  user: "admin", // Replace with your MySQL username
-  password: "STADVDB13", // Replace with your MySQL password
+  host: "ccscloud.dlsu.edu.ph", // Replace with your MySQL host address
+  port: "20040",
+  user: "root", // Replace with your MySQL username
+  password: "|STadvdb|13", // Replace with your MySQL password
   database: "mco1", // Replace with your database name
   queueLimit: 0,
   waitForConnections: true,
 });
 
-const slave2Pool = mysql.createPool({
+const visminPool = mysql.createPool({
   connectionLimit: 10,
-  host: "mco2-3.cnoc0cswg00b.ap-northeast-1.rds.amazonaws.com", // Replace with your MySQL host address
-  port: "3306",
-  user: "admin", // Replace with your MySQL username
-  password: "STADVDB13", // Replace with your MySQL password
+  host: "ccscloud.dlsu.edu.ph", // Replace with your MySQL host address
+  port: "20041",
+  user: "root", // Replace with your MySQL username
+  password: "|STadvdb|13", // Replace with your MySQL password
   database: "mco1", // Replace with your database name
   queueLimit: 0,
   waitForConnections: true,
 });
-
-pool
-  .query("SELECT * FROM appointments")
-  .then((results) => {
-    console.log("Connection successful and query executed!");
-  })
-  .catch((err) => {
-    console.error("Error connecting or executing query:", err);
-  });
 
 app.use(express.json());
 app.use(express.static("src"));
@@ -52,7 +45,7 @@ app.use(express.static("src"));
 app.get("/appointments", async (req, res) => {
   try {
     const sql = "SELECT * FROM appointments ORDER BY EndTime DESC LIMIT 20;";
-    const result = await slave1Pool.query(sql);
+    const result = await phPool.query(sql);
     res.status(200).json(result);
   } catch (error) {
     console.error(error);
@@ -63,11 +56,9 @@ app.get("/appointments", async (req, res) => {
 // viewing a specific appointment
 app.get("/appointments/:id", async (req, res) => {
   const appointmentId = req.params.id;
-
   try {
     const sql = "SELECT * FROM appointments WHERE apptid = ?";
-    const [results] = await slave1Pool.query(sql, [appointmentId]);
-
+    const [results] = await phPool.query(sql, [appointmentId]);
     if (results.length > 0) {
       const appointment = results[0];
       res.status(200).json(appointment);
@@ -86,10 +77,7 @@ app.put("/appointments/:id", async (req, res) => {
   const appointmentData = req.body;
   try {
     const sql = "UPDATE appointments SET ? WHERE apptid = ?";
-    const [result] = await masterPool.query(sql, [
-      appointmentData,
-      appointmentId,
-    ]);
+    const [result] = await phPool.query(sql, [appointmentData, appointmentId]);
 
     if (result.affectedRows > 0) {
       res.status(200).send("Appointment updated successfully!");
@@ -123,7 +111,7 @@ app.post("/appointments", async function (req, res) {
   try {
     const sql =
       "INSERT INTO appointments (apptid, pxid, doctorid, clinicid, status, TimeQueued, QueueDate, StartTime, EndTime, type, isVirtual) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-    const [result] = await masterPool.query(sql, [
+    const [result] = await phPool.query(sql, [
       apptid,
       pxid,
       doctorid,
@@ -146,7 +134,7 @@ app.post("/appointments", async function (req, res) {
 app.get("/clinics", async (req, res) => {
   try {
     const sql = "SELECT clinicid FROM clinics LIMIT 10;";
-    const result = await slave1Pool.query(sql);
+    const result = await phPool.query(sql);
     res.status(200).json(result);
   } catch (error) {
     console.error(error);
@@ -157,7 +145,7 @@ app.get("/clinics", async (req, res) => {
 app.get("/doctors", async (req, res) => {
   try {
     const sql = "SELECT doctorid FROM doctors LIMIT 10;";
-    const result = await slave1Pool.query(sql);
+    const result = await phPool.query(sql);
     res.status(200).json(result);
   } catch (error) {
     console.error(error);
@@ -168,7 +156,7 @@ app.get("/doctors", async (req, res) => {
 app.get("/px", async (req, res) => {
   try {
     const sql = "SELECT pxid FROM px LIMIT 10;";
-    const result = await slave1Pool.query(sql);
+    const result = await phPool.query(sql);
     res.status(200).json(result);
   } catch (error) {
     console.error(error);
@@ -179,7 +167,7 @@ app.get("/px", async (req, res) => {
 app.get("/report1", async (req, res) => {
   try {
     const sql = `SELECT YEAR(a.StartTime) as year, MONTH(a.StartTime) as month, COUNT(a.pxid) as count FROM appointments a GROUP BY YEAR(a.StartTime), MONTH(a.StartTime) ORDER BY YEAR(a.StartTime), MONTH(a.StartTime);`;
-    const result = await slave1Pool.query(sql);
+    const result = await phPool.query(sql);
     res.status(200).json(result);
   } catch (error) {
     console.error(error);
@@ -190,7 +178,7 @@ app.get("/report1", async (req, res) => {
 app.get("/report2", async (req, res) => {
   try {
     const sql = `SELECT c.clinicid, ROUND(AVG(TIMESTAMPDIFF(HOUR, a.TimeQueued, a.EndTime)), 2) AS avg_wait_time_hours FROM appointments a JOIN clinics c ON a.clinicid = c.clinicid WHERE type = 'Consultation' AND c.RegionName = 'National Capital Region (NCR)' GROUP BY c.clinicid;`;
-    const result = await slave1Pool.query(sql);
+    const result = await phPool.query(sql);
     res.status(200).json(result);
   } catch (error) {
     console.error(error);
@@ -201,7 +189,7 @@ app.get("/report2", async (req, res) => {
 app.get("/report3", async (req, res) => {
   try {
     const sql = `SELECT d.mainspecialty as specialty, type, ROUND(AVG(TIMESTAMPDIFF(HOUR, a.TimeQueued, a.StartTime)),2) AS avg_wait_time_hours FROM appointments a JOIN doctors d ON a.doctorid = d.doctorid GROUP BY d.mainspecialty,type ORDER BY d.mainspecialty;`;
-    const result = await slave1Pool.query(sql);
+    const result = await phPool.query(sql);
     res.status(200).json(result);
   } catch (error) {
     console.error(error);
