@@ -118,11 +118,11 @@ $(document).ready(function () {
       contentType: "application/json",
       success: (data) => {
         console.log("YEHEY");
-        /* window.location.href = `/`; */
+        window.location.href = `/`;
       },
       error: (data) => {
-       /*  $(".create-error").text("You have an error in your input.");
-        console.log("ERROR AAAAAAA"); */
+        $(".create-error").text("You have an error in your input.");
+        console.log("ERROR AAAAAAA");
       },
     });
   });
