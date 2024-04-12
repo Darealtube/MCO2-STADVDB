@@ -154,8 +154,6 @@ const executeQuery = async (
       result = await primaryRegionPool.query(query);
       console.log(`Query success for ${region}`);
     } catch (error) {
-      // If the query failed to execute or the logs failed to recover, the whole function will execute again. With this,
-      // we can recursively check for node pool health.
       console.log("Failed request to primary node. Retrying...");
       let retries = 0;
       while (retries < 3) {
@@ -190,9 +188,6 @@ const executeQuery = async (
       if (result && action != "select") createLog(region, query);
       console.log(`Query success for ${fallbackRegion}`);
     } catch (error) {
-      console.log(error);
-      // If the query failed to execute or the logs failed to recover, the whole function will execute again. With this,
-      // we can recursively check for node pool health.
       console.log("Failed request to fallback node 1. Retrying...");
       let retries = 0;
 
@@ -218,8 +213,6 @@ const executeQuery = async (
       if (result && action != "select") createLog(region, query);
       console.log(`Query success for ${fallbackRegion2}`);
     } catch (error) {
-      // If the query failed to execute or the logs failed to recover, the whole function will execute again. With this,
-      // we can recursively check for node pool health.
       console.log("Failed request to fallback node 2. Retrying...");
       let retries = 0;
 
