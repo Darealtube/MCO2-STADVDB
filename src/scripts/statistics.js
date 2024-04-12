@@ -7,7 +7,7 @@ $(document).ready(() => {
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: (data) => {
-        const report = data[0];
+        const report = data;
         console.log("REPORT1", report);
         report.forEach((rep) => {
           const reportRow = $(
@@ -30,7 +30,7 @@ $(document).ready(() => {
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: (data) => {
-        const report = data[0];
+        const report = data;
         console.log("REPORT2", report);
         report.forEach((rep) => {
           const reportRow = $(
@@ -53,7 +53,7 @@ $(document).ready(() => {
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: (data) => {
-        const report = data[0];
+        const report = data;
         console.log("REPORT3", report);
         report.forEach((rep) => {
           const reportRow = $(

@@ -1,6 +1,7 @@
 $(document).ready(function () {
   var urlQuery = new URLSearchParams(window.location.search);
   const id = urlQuery.get("id");
+  let apptRegion;
 
   const formatDate = (datetimeInput) => {
     // Convert the input value to a JavaScript Date object
@@ -66,7 +67,8 @@ $(document).ready(function () {
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: (data) => {
-        updateAppointmentData(data);
+        updateAppointmentData(data[0]);
+        apptRegion = data[0].region;
       },
       error: ({ responseJSON }) => {
         window.location.href = "/";
@@ -96,7 +98,7 @@ $(document).ready(function () {
 
     $.ajax({
       method: "PUT",
-      url: `/appointments/${id}`,
+      url: `/appointments/${id}/${apptRegion}`,
       data: JSON.stringify({
         TimeQueued: formatDate($("#timeQueued").val()),
         QueueDate: formatDate($("#queueDate").val()),
@@ -107,12 +109,11 @@ $(document).ready(function () {
         type,
       }),
       contentType: "application/json",
-      success: (data) => {
-        console.log("YEHEY");
+      success: () => {
         window.location.href = `/appointment.html?id=${id}`;
       },
-      error: (data) => {
-        console.log("ERROR AAAAAAA");
+      error: () => {
+        window.location.href = `/appointment.html?id=${id}`;
       },
     });
   });

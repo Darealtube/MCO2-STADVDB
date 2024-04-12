@@ -36,7 +36,7 @@ $(document).ready(() => {
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: (data) => {
-        appendAppointments(data[0]);
+        appendAppointments(data);
       },
       error: ({ responseJSON }) => {
         console.log("THERES AN ERROR AAAA");

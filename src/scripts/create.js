@@ -7,9 +7,9 @@ $(document).ready(function () {
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: (data) => {
-        for (let i = 0; i < data[0].length; ++i) {
+        for (let i = 0; i < data.length; ++i) {
           const clinic = $(
-            `<option value="${data[0][i].clinicid}">${data[0][i].clinicid}</option>`
+            `<option value="${data[i].clinicid}">${data[i].clinicid}</option>`
           );
           $("#clinicid").append(clinic);
         }
@@ -28,9 +28,9 @@ $(document).ready(function () {
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: (data) => {
-        for (let i = 0; i < data[0].length; ++i) {
+        for (let i = 0; i < data.length; ++i) {
           const doctor = $(
-            `<option value="${data[0][i].doctorid}">${data[0][i].doctorid}</option>`
+            `<option value="${data[i].doctorid}">${data[i].doctorid}</option>`
           );
           $("#doctorid").append(doctor);
         }
@@ -49,9 +49,9 @@ $(document).ready(function () {
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: (data) => {
-        for (let i = 0; i < data[0].length; ++i) {
+        for (let i = 0; i < data.length; ++i) {
           const px = $(
-            `<option value="${data[0][i].pxid}">${data[0][i].pxid}</option>`
+            `<option value="${data[i].pxid}">${data[i].pxid}</option>`
           );
           $("#pxid").append(px);
         }
@@ -118,11 +118,11 @@ $(document).ready(function () {
       contentType: "application/json",
       success: (data) => {
         console.log("YEHEY");
-        window.location.href = `/`;
+        /* window.location.href = `/`; */
       },
       error: (data) => {
-        $(".create-error").text("You have an error in your input.");
-        console.log("ERROR AAAAAAA");
+       /*  $(".create-error").text("You have an error in your input.");
+        console.log("ERROR AAAAAAA"); */
       },
     });
   });

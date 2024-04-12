@@ -26,10 +26,10 @@ $(document).ready(function () {
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: (data) => {
-        updateAppointmentData(data);
+        updateAppointmentData(data[0]);
       },
       error: ({ responseJSON }) => {
-        window.location.href = "/";
+        
       },
     });
   };
